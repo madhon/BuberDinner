@@ -1,11 +1,11 @@
 ﻿namespace BuberDinner.Infrastructure.Authentication;
 
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using BuberDinner.Application.Common.Interfaces.Authentication;
 using BuberDinner.Application.Common.Interfaces.Services;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 
 public class JwtTokenGenerator : IJwtTokenGenerator
@@ -30,21 +30,22 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         
         var claims = new[]
         {
-            new Claim(JwtRegisteredClaimNames.Sub, id.ToString()),
-            new Claim(JwtRegisteredClaimNames.GivenName, firstName),
-            new Claim(JwtRegisteredClaimNames.FamilyName, lastName),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim("sub", id.ToString()),
+            new Claim("given_name", firstName),
+            new Claim("family_name", lastName),
+            new Claim("jti", Guid.NewGuid().ToString()),
         };
 
-        var securityToken = new JwtSecurityToken(
-            issuer: jwtSettings.Issuer,
-            audience: jwtSettings.Audience,
-            notBefore: now,
-            expires: now.AddMinutes(jwtSettings.ExpiryMinutes),
-            claims: claims,
-            signingCredentials: signingCredentials
-            );
-
-        return new JwtSecurityTokenHandler().WriteToken(securityToken);
+        var securityToken = new SecurityTokenDescriptor
+        {
+            Subject = new ClaimsIdentity(claims),
+            Issuer = jwtSettings.Issuer,
+            Audience = jwtSettings.Audience,
+            NotBefore = now,
+            Expires = now.AddMinutes(jwtSettings.ExpiryMinutes),
+            SigningCredentials = signingCredentials
+        };
+   
+        return new JsonWebTokenHandler().CreateToken(securityToken);
     }
 }
