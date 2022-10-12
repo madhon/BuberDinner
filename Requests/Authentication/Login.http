@@ -1,0 +1,7 @@
+POST https://localhost:7017/auth/login
+Content-Type: application/json
+
+{
+    "email" : "madhon@madhon.co.uk",
+    "password" : "Password@1"
+}
