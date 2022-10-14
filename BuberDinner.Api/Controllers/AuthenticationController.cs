@@ -21,10 +21,10 @@ public class AuthenticationController : ControllerBase
         var authResponse = authenticationService.Register(request.FirstName, request.LastName, request.Email, request.Password);
 
         var response = new AuthenticationResponse(
-            authResponse.Id, 
-            authResponse.FirstName,
-            authResponse.LastName, 
-            authResponse.Email,
+            authResponse.User.Id, 
+            authResponse.User.FirstName,
+            authResponse.User.LastName, 
+            authResponse.User.Email,
             authResponse.Token
         );
 
@@ -37,10 +37,10 @@ public class AuthenticationController : ControllerBase
         var authResponse = authenticationService.Login(request.Email, request.Password);
 
         var response = new AuthenticationResponse(
-            authResponse.Id, 
-            authResponse.FirstName,
-            authResponse.LastName, 
-            authResponse.Email,
+            authResponse.User.Id, 
+            authResponse.User.FirstName,
+            authResponse.User.LastName, 
+            authResponse.User.Email,
             authResponse.Token
         );
 
