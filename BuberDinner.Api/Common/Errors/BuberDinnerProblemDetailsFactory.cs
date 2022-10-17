@@ -1,4 +1,4 @@
-﻿namespace BuberDinner.Api.Errors;
+﻿namespace BuberDinner.Api.Common.Errors;
 
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;

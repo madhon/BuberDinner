@@ -14,4 +14,8 @@
     <ProjectReference Include="..\BuberDinner.Domain\BuberDinner.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\Errors" />
+  </ItemGroup>
+
 </Project>
