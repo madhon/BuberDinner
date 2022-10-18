@@ -1,26 +1,30 @@
-using BuberDinner.Application.Services.Authentication;
-using BuberDinner.Contracts.Authentication;
-using Microsoft.AspNetCore.Mvc;
-
 namespace BuberDinner.Api.Controllers;
 
+using BuberDinner.Application.Authentication.Commands.Register;
+using BuberDinner.Application.Authentication.Common;
+using BuberDinner.Application.Authentication.Queries.Login;
+using BuberDinner.Contracts.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using BuberDinner.Domain.Common.Errors;
+using MediatR;
 
 [ApiController]
 [Route("auth")]
 public class AuthenticationController : ApiController
 {
-    private readonly IAuthenticationService authenticationService;
-
-    public AuthenticationController(IAuthenticationService authenticationService)
+    private readonly ISender mediator;
+    
+    public AuthenticationController(ISender mediator)
     {
-        this.authenticationService = authenticationService;
+        this.mediator = mediator;
     }
 
     [HttpPost("register")]
-    public IActionResult Register(RegisterRequest request)
+    public async Task<IActionResult> Register(RegisterRequest request)
     {
-        var authResult = authenticationService.Register(request.FirstName, request.LastName, request.Email, request.Password);
+        var command = new RegisterCommand(request.FirstName, request.LastName, request.Email, request.Password);
+
+        var authResult = await mediator.Send(command);
 
         return authResult.Match( 
             authResult => Ok(MapResult(authResult)),
@@ -29,10 +33,12 @@ public class AuthenticationController : ApiController
     }
     
     [HttpPost("login")]
-    public IActionResult Login(LoginRequest request)
+    public async Task<IActionResult>  Login(LoginRequest request)
     {
-        var authResult = authenticationService.Login(request.Email, request.Password);
-
+        var query = new LoginQuery(request.Email, request.Password);
+        
+        var authResult = await mediator.Send(query);
+        
         if (authResult.IsError && authResult.FirstError == Errors.Authentication.InvalidCredentials)
         {
             return Problem(statusCode: StatusCodes.Status401Unauthorized, title: authResult.FirstError.Description);
