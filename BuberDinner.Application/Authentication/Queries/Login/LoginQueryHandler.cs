@@ -21,14 +21,16 @@ public class LoginQueryHandler : IRequestHandler<LoginQuery, ErrorOr<Authenticat
     
     public async Task<ErrorOr<AuthenticationResult>> Handle(LoginQuery query, CancellationToken cancellationToken)
     {
+        await Task.CompletedTask;
+
         // make sure exists
-        if (userRepository.GetUserByEmail(query.email) is not User user)
+        if (userRepository.GetUserByEmail(query.Email) is not User user)
         {
             return Errors.Authentication.InvalidCredentials;
         }
         
         // validate password
-        if (user.Password != query.password)
+        if (user.Password != query.Password)
         {
             return Errors.Authentication.InvalidCredentials;
         }

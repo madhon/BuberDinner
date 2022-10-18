@@ -22,8 +22,10 @@ public class RegisterCommandHandler :
     
     public async Task<ErrorOr<AuthenticationResult>> Handle(RegisterCommand command, CancellationToken cancellationToken)
     {
+        await Task.CompletedTask;
+        
         // validate user doesnt exist
-        if (userRepository.GetUserByEmail(command.email) is not null)
+        if (userRepository.GetUserByEmail(command.Email) is not null)
         {
             return Errors.User.DuplicateEmail;
         }
@@ -31,10 +33,10 @@ public class RegisterCommandHandler :
         //create new user
         var user = new User
         {
-            FirstName = command.firstName,
-            LastName = command.lastName,
-            Email = command.email,
-            Password = command.password
+            FirstName = command.FirstName,
+            LastName = command.LastName,
+            Email = command.Email,
+            Password = command.Password
         };
         
         userRepository.Add(user);

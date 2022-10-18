@@ -5,5 +5,5 @@ using MediatR;
 using ErrorOr;
 
 public record LoginQuery(
-    string email, 
-    string password) : IRequest<ErrorOr<AuthenticationResult>>;
+    string Email, 
+    string Password) : IRequest<ErrorOr<AuthenticationResult>>;
