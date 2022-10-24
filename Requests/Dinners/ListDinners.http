@@ -1,0 +1,2 @@
+﻿GET https://localhost:7017/dinners
+Content-Type: application/json
