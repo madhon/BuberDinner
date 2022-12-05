@@ -17,4 +17,7 @@ public sealed class Menu : AggregateRoot<MenuId>
     private readonly List<MenuSection> _sections = new();
 
     public IReadOnlyList<MenuSection> Sections => _sections.AsReadOnly();
+    
+
+
 }
