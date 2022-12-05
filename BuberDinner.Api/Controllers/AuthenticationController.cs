@@ -7,7 +7,7 @@ using BuberDinner.Contracts.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using BuberDinner.Domain.Common.Errors;
 using MapsterMapper;
-using MediatR;
+using Mediator;
 using Microsoft.AspNetCore.Authorization;
 
 [Route("auth")]
