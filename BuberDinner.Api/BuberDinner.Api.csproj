@@ -1,9 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>61907869-5eb9-4f2e-8eb2-9092889e47f8</UserSecretsId>
   </PropertyGroup>
 
@@ -16,6 +13,7 @@
   <ItemGroup>
     <PackageReference Include="Mapster" />
     <PackageReference Include="Mapster.DependencyInjection" />
+    <PackageReference Include="Mediator.Abstractions" />
   </ItemGroup>
 
 </Project>

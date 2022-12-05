@@ -2,7 +2,8 @@
 
 using ErrorOr;
 using FluentValidation;
-using MediatR;
+using Mediator;
+
 
 public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
@@ -15,18 +16,18 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
         this.validator = validator;
     }
     
-    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+    public async ValueTask<TResponse> Handle(TRequest message, CancellationToken cancellationToken, MessageHandlerDelegate<TRequest, TResponse> next)
     {
         if (validator is null)
         {
-            return await next();
+            return await next(message, cancellationToken);
         }
         
-        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+        var validationResult = await validator.ValidateAsync(message, cancellationToken);
 
         if (validationResult.IsValid)
         {
-            return await next();
+            return await next(message, cancellationToken);
         }
 
         var errors = validationResult.Errors.ConvertAll(vf => 
@@ -34,4 +35,5 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
 
         return (dynamic)errors;
     }
+    
 }

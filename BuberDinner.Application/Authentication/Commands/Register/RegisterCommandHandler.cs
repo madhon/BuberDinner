@@ -6,7 +6,7 @@ using BuberDinner.Application.Common.Interfaces.Persistence;
 using BuberDinner.Domain.Common.Errors;
 using BuberDinner.Domain.Entites;
 using ErrorOr;
-using MediatR;
+using Mediator;
 
 public class RegisterCommandHandler : 
     IRequestHandler<RegisterCommand, ErrorOr<AuthenticationResult>>
@@ -20,7 +20,7 @@ public class RegisterCommandHandler :
         this.jwtTokenGenerator = jwtTokenGenerator;
     }
     
-    public async Task<ErrorOr<AuthenticationResult>> Handle(RegisterCommand command, CancellationToken cancellationToken)
+    public async ValueTask<ErrorOr<AuthenticationResult>> Handle(RegisterCommand command, CancellationToken cancellationToken)
     {
         await Task.CompletedTask;
         
