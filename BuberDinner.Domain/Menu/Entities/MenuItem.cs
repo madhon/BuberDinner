@@ -9,8 +9,8 @@ public class MenuItem : Entity<MenuItemId>
     {
     }
     
-    public string Name { get; set; }
-    public string Description { get; set; }
+    public string? Name { get; set; }
+    public string? Description { get; set; }
 
     private MenuItem(MenuItemId menuItemId, string name, string description)
      :base(menuItemId)

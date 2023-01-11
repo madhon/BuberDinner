@@ -10,8 +10,8 @@ public sealed class Menu : AggregateRoot<MenuId>
     {
     }
     
-    public string Name { get; set; }
-    public string Description { get; set; }
+    public string? Name { get; set; }
+    public string? Description { get; set; }
     public float AverageRating { get; set; }
 
     private readonly List<MenuSection> _sections = new();
