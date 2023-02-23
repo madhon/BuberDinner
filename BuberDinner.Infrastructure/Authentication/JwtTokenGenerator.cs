@@ -46,7 +46,9 @@ public class JwtTokenGenerator : IJwtTokenGenerator
             Expires = now.AddMinutes(jwtSettings.ExpiryMinutes),
             SigningCredentials = signingCredentials
         };
-   
-        return new JsonWebTokenHandler().CreateToken(securityToken);
+
+        var tokenHandler = new JsonWebTokenHandler();
+
+        return tokenHandler.CreateToken(securityToken);
     }
 }

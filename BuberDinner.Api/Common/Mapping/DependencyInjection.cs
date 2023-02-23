@@ -1,7 +1,6 @@
 ﻿namespace BuberDinner.Api.Common.Mapping;
 
 using System.Reflection;
-using BuberDinner.Application.Authentication.Queries.Login;
 using Mapster;
 using MapsterMapper;
 
