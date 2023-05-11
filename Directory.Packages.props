@@ -1,18 +1,18 @@
 <Project>
   <ItemGroup>
     <!-- System packages -->
-    <PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="6.28.1" />
+    <PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="6.30.1" />
     <!-- Microsoft packages -->
     <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.4" />
     <PackageVersion Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
-    <PackageVersion Include="Microsoft.IdentityModel.JsonWebTokens" Version="6.28.1" />
+    <PackageVersion Include="Microsoft.IdentityModel.JsonWebTokens" Version="6.30.1" />
     <!-- 3rd party packages -->
     <PackageVersion Include="Mapster" Version="7.3.0" />
     <PackageVersion Include="Mapster.DependencyInjection" Version="1.0.0" />
-    <PackageVersion Include="FluentValidation" Version="11.5.1" />
-    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.1" />
+    <PackageVersion Include="FluentValidation" Version="11.5.2" />
+    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.2" />
     <PackageVersion Include="ErrorOr" Version="1.2.1" />
     <PackageVersion Include="Mediator.Abstractions" Version="2.1.1" />
     <PackageVersion Include="Mediator.SourceGenerator" Version="2.1.1" />
