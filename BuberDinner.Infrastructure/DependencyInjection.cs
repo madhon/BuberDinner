@@ -36,11 +36,11 @@ public static class DependencyInjection
             .AddJwtBearer(opts => opts.TokenValidationParameters = new TokenValidationParameters()
             {
                 ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
-                ClockSkew = TimeSpan.FromMinutes(1),
-                ValidIssuer = jwtSettings.Issuer,
-                ValidAudience = jwtSettings.Audience,
+				ValidIssuer = jwtSettings.Issuer,
+				ValidateAudience = true,
+				ValidAudience = jwtSettings.Audience,
+				ValidateLifetime = true,
+                ClockSkew = TimeSpan.FromSeconds(15),
                 IssuerSigningKey = new SymmetricSecurityKey(
                     Encoding.UTF8.GetBytes(jwtSettings.Secret))
             });

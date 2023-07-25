@@ -16,6 +16,4 @@ public static class DependencyInjection
         services.AddMappings();
         return services;
     }
-
-
 }

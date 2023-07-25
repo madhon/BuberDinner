@@ -9,7 +9,7 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
     where TRequest : IRequest<TResponse>
     where TResponse : IErrorOr
 {
-    private readonly IValidator<TRequest> validator;
+    private readonly IValidator<TRequest>? validator;
 
     public ValidationBehavior(IValidator<TRequest>? validator = null)
     {
