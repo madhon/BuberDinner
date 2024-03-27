@@ -5,7 +5,7 @@ using BuberDinner.Domain.Entites;
 
 public class UserRepository : IUserRepository
 {
-    private static readonly List<User> users = new();
+    private static readonly List<User> users = [];
     
     public User? GetUserByEmail(string email)
     {

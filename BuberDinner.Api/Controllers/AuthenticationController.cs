@@ -1,5 +1,6 @@
 namespace BuberDinner.Api.Controllers;
 
+using BuberDinner.Api.Common.Mapping;
 using BuberDinner.Application.Authentication.Commands.Register;
 using BuberDinner.Application.Authentication.Common;
 using BuberDinner.Application.Authentication.Queries.Login;
@@ -26,7 +27,7 @@ public class AuthenticationController : ApiController
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterRequest request)
     {
-        var command = mapper.Map<RegisterCommand>(request);
+        var command = RegisterCommandMapper.MapToRegisterCommand(request);
         var authResult = await mediator.Send(command);
 
         return authResult.Match( 
@@ -36,9 +37,10 @@ public class AuthenticationController : ApiController
     }
     
     [HttpPost("login")]
-    public async Task<IActionResult>  Login(LoginRequest request)
+    public async Task<IActionResult> Login(LoginRequest request)
     {
-        var query = mapper.Map<LoginQuery>(request);
+        var query = LoginRequestQueryMapper.MapRequestToQuery(request);
+        
         var authResult = await mediator.Send(query);
         
         if (authResult.IsError && authResult.FirstError == Errors.Authentication.InvalidCredentials)

@@ -4,9 +4,9 @@
     <PackageReference Include="FluentValidation" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Telemetry.Abstractions" />
     <PackageReference Include="Mediator.Abstractions" />
- 
-  </ItemGroup>
+   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BuberDinner.Domain\BuberDinner.Domain.csproj" />

@@ -2,8 +2,16 @@ using BuberDinner.Api;
 using BuberDinner.Application;
 using BuberDinner.Infrastructure;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateSlimBuilder(args);
 {
+    builder.WebHost.ConfigureKestrel(serverOptions =>
+    {
+        serverOptions.ConfigureEndpointDefaults(listenOptions =>
+        {
+            listenOptions.UseHttps();
+        });
+    });
+    
     builder.Services
         .AddPresentation()
         .AddApplication()
