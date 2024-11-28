@@ -1,6 +1,7 @@
 using BuberDinner.Api;
 using BuberDinner.Application;
 using BuberDinner.Infrastructure;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateSlimBuilder(args);
 {
@@ -25,6 +26,8 @@ var app = builder.Build();
     app.UseHttpsRedirection();
     app.UseAuthentication();
     app.UseAuthorization();
+    app.MapOpenApi();
+    app.MapScalarApiReference(opts => opts.DefaultFonts = false);
     app.MapControllers();
     app.Run();
 }

@@ -13,6 +13,8 @@ public static class DependencyInjection
     public static IServiceCollection AddPresentation(this IServiceCollection services)
     {
         services.AddHttpLogging(o => o = new HttpLoggingOptions());
+
+        services.AddOpenApi();
         
         services.AddControllers()
             .AddJsonOptions(opts =>
