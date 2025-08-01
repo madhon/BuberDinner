@@ -11,4 +11,7 @@ using BuberDinner.Contracts.Authentication;
     PropertyNameCaseInsensitive = true,
     AllowTrailingCommas = true)]
 [JsonSerializable(typeof(LoginRequest))]
+[JsonSerializable(typeof(RegisterRequest))]
+[JsonSerializable(typeof(AuthenticationResponse))]
+[JsonSerializable(typeof(string))]
 internal sealed partial class AppJsonSerializerContext : JsonSerializerContext;
