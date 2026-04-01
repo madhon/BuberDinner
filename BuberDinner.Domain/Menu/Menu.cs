@@ -14,7 +14,7 @@ public sealed class Menu : AggregateRoot<MenuId>
     public string? Description { get; set; }
     public float AverageRating { get; set; }
 
-    private readonly List<MenuSection> _sections = new();
+    private readonly List<MenuSection> _sections = [];
 
     public IReadOnlyList<MenuSection> Sections => _sections.AsReadOnly();
     

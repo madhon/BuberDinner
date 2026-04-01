@@ -3,7 +3,6 @@
 using System.Security.Claims;
 using System.Text;
 using BuberDinner.Application.Common.Interfaces.Authentication;
-using BuberDinner.Application.Common.Interfaces.Services;
 using BuberDinner.Domain.Entites;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.JsonWebTokens;
@@ -11,10 +10,10 @@ using Microsoft.IdentityModel.Tokens;
 
 public class JwtTokenGenerator : IJwtTokenGenerator
 {
-    private readonly IDateTimeProvider dateTimeProvider;
+    private readonly TimeProvider dateTimeProvider;
     private readonly JwtSettings jwtSettings;
 
-    public JwtTokenGenerator(IDateTimeProvider dateTimeProvider, IOptions<JwtSettings> jwtSettings)
+    public JwtTokenGenerator(TimeProvider dateTimeProvider, IOptions<JwtSettings> jwtSettings)
     {
         this.dateTimeProvider = dateTimeProvider;
         this.jwtSettings = jwtSettings.Value;
@@ -22,7 +21,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
     
     public string GenerateToken(User user)
     {
-        var now = dateTimeProvider.UtcNow;
+        var now = dateTimeProvider.GetUtcNow().UtcDateTime;
         
         var signingCredentials = new SigningCredentials(
             new SymmetricSecurityKey(

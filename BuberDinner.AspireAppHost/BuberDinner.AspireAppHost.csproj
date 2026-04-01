@@ -1,6 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-    <Sdk Name="Aspire.AppHost.Sdk" Version="9.4.0"/>
+<Project Sdk="Aspire.AppHost.Sdk/13.2.1">
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -10,10 +8,6 @@
         <IsAspireHost>true</IsAspireHost>
         <UserSecretsId>b2d3263c-36fd-4568-98db-5570e59da190</UserSecretsId>
     </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Aspire.Hosting.AppHost"/>
-    </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\BuberDinner.Api\BuberDinner.Api.csproj" />

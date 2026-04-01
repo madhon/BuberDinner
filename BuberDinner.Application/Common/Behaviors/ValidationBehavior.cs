@@ -15,8 +15,8 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
     {
         this.validator = validator;
     }
-    
-    public async ValueTask<TResponse> Handle(TRequest message, CancellationToken cancellationToken, MessageHandlerDelegate<TRequest, TResponse> next)
+
+    public async ValueTask<TResponse> Handle(TRequest message, MessageHandlerDelegate<TRequest, TResponse> next, CancellationToken cancellationToken)
     {
         if (validator is null)
         {
@@ -35,5 +35,4 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
 
         return (dynamic)errors;
     }
-    
 }
