@@ -27,7 +27,6 @@ public static class DependencyInjection
         
         services.AddMediator(opts => opts.ServiceLifetime = ServiceLifetime.Scoped);
         services.AddSingleton<ProblemDetailsFactory, BuberDinnerProblemDetailsFactory>();
-        services.AddMappings();
         return services;
     }
 }
